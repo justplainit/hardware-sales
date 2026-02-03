@@ -64,27 +64,33 @@ async function main() {
     create: { key: "vat_rate", value: "0.15" },
   });
 
-  const client = await prisma.client.upsert({
+  const existingClient = await prisma.client.findFirst({
     where: { name: "Acme Mining" },
-    update: {},
-    create: {
-      name: "Acme Mining",
-      billingEmail: "billing@acmemining.example",
-      deliveryAddress: "14 Industrial Way, Cape Town",
-      isPrivileged: true,
-      paymentTerms: "EOM",
-    },
   });
+  const client =
+    existingClient ??
+    (await prisma.client.create({
+      data: {
+        name: "Acme Mining",
+        billingEmail: "billing@acmemining.example",
+        deliveryAddress: "14 Industrial Way, Cape Town",
+        isPrivileged: true,
+        paymentTerms: "EOM",
+      },
+    }));
 
-  const supplier = await prisma.supplier.upsert({
+  const existingSupplier = await prisma.supplier.findFirst({
     where: { name: "ComputeHub Distributors" },
-    update: {},
-    create: {
-      name: "ComputeHub Distributors",
-      contactEmail: "orders@computehub.example",
-      defaultLeadDays: 5,
-    },
   });
+  const supplier =
+    existingSupplier ??
+    (await prisma.supplier.create({
+      data: {
+        name: "ComputeHub Distributors",
+        contactEmail: "orders@computehub.example",
+        defaultLeadDays: 5,
+      },
+    }));
 
   const existingQuote = await prisma.quote.findFirst();
   if (!existingQuote) {
