@@ -1,4 +1,4 @@
-import type { Prisma, PrismaClient } from "@/generated/prisma";
+import type { Prisma, PrismaClient } from "@prisma/client";
 
 function padSequence(value: number) {
   return value.toString().padStart(4, "0");

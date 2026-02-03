@@ -1,4 +1,4 @@
-import type { Prisma } from "@/generated/prisma";
+import type { Prisma } from "@prisma/client";
 import { groupItemsBySupplier } from "@/lib/workflows";
 import { generateNumber } from "@/lib/numbering";
 type SupplierOrderNotice = {

@@ -1,4 +1,4 @@
-import type { QuoteItemStatus, DeliveryMethod } from "@/generated/prisma";
+import type { QuoteItemStatus, DeliveryMethod } from "@prisma/client";
 
 export type QuoteItemInput = {
   supplierId?: string | null;

@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import type { Session } from "next-auth";
-import type { UserRole } from "@/generated/prisma";
+import type { UserRole } from "@prisma/client";
 
 export function requireAuth(session: Session | null) {
   if (!session?.user) {
