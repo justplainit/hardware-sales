@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 
 const PUBLIC_PATHS = [
@@ -9,7 +9,7 @@ const PUBLIC_PATHS = [
   "/favicon.ico",
 ];
 
-export async function middleware(req: Request) {
+export async function middleware(req: NextRequest) {
   const url = new URL(req.url);
   const isPublic = PUBLIC_PATHS.some((path) => url.pathname.startsWith(path));
 
